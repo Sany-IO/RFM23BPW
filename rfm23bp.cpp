@@ -7,10 +7,8 @@
 
 
 #include "main.h"
-#include "xtea.h"
 #include "rfm23bp.h"
 #include <cassert>
-#include "usbd_cdc_if.h"
 #include <math.h>
 
 XTEA *xtea;
@@ -51,8 +49,6 @@ bool RFM23::init(SPI_HandleTypeDef *spi, uint32_t khz)
 		return false;
 
 	this->swReset();
-
-
 
 	this->write_register(RH_RF22_REG_05_INTERRUPT_ENABLE1, RH_RF22_ENTXFFAEM | RH_RF22_ENRXFFAFULL | RH_RF22_ENPKSENT | RH_RF22_ENPKVALID | RH_RF22_ENCRCERROR | RH_RF22_ENFFERR);
 	this->write_register(RH_RF22_REG_06_INTERRUPT_ENABLE2, RH_RF22_ENPREAVAL);
